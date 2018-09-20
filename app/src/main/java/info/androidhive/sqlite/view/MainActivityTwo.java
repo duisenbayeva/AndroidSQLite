@@ -22,14 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import info.androidhive.sqlite.R;
-import info.androidhive.sqlite.database.DatabaseHelper;
 import info.androidhive.sqlite.database.EventDatabaseHelper;
 import info.androidhive.sqlite.database.model.Event;
-import info.androidhive.sqlite.database.model.Note;
 import info.androidhive.sqlite.utils.MyDividerItemDecoration;
 import info.androidhive.sqlite.utils.RecyclerTouchListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityTwo extends AppCompatActivity {
     private EventsAdapter mAdapter;
     private List<Event> eventsList = new ArrayList<>();
     private CoordinatorLayout coordinatorLayout;
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                showEventDialog(false, null, -1);
-                Intent addEvent = new Intent(MainActivity.this, EventAddActivity.class);
+                Intent addEvent = new Intent(MainActivityTwo.this, EventAddActivity.class);
                 startActivity(addEvent);
             }
         });
@@ -184,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getApplicationContext());
         View view = layoutInflaterAndroid.inflate(R.layout.note_dialog, null);
 
-        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(MainActivityTwo.this);
         alertDialogBuilderUserInput.setView(view);
 
         final EditText inputTitle = view.findViewById(R.id.note);
@@ -216,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Show toast message when no text is entered
                 if (TextUtils.isEmpty(inputTitle.getText().toString())) {
-                    Toast.makeText(MainActivity.this, "Enter event!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivityTwo.this, "Enter event!", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
                     alertDialog.dismiss();
