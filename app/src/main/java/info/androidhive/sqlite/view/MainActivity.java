@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         coordinatorLayout = findViewById(R.id.coordinator_layout);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         eventsList.addAll(db.getAllEvents());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     alertDialog.dismiss();
                 }
-                Event inputEvent = new Event(inputTitle.getText().toString(),"","");
+                Event inputEvent = new Event(inputTitle.getText().toString(),"","","");
                 // check if user updating note
                 if (shouldUpdate && event != null) {
                     // update event by it's id

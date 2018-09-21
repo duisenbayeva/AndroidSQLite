@@ -30,7 +30,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(String title, String from, String to) {
+    public Event(String title,String timestamp, String from, String to) {
         this.title = title;
         this.timestamp = timestamp;
         this.from = from;

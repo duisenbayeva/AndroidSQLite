@@ -219,7 +219,7 @@ public class MainActivityTwo extends AppCompatActivity {
                 } else {
                     alertDialog.dismiss();
                 }
-                Event inputEvent = new Event(inputTitle.getText().toString(),"","");
+                Event inputEvent = new Event(inputTitle.getText().toString(),"","","");
                 // check if user updating note
                 if (shouldUpdate && event != null) {
                     // update event by it's id

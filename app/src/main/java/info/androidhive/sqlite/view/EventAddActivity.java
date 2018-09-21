@@ -1,5 +1,6 @@
 package info.androidhive.sqlite.view;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import info.androidhive.sqlite.R;
@@ -50,7 +53,6 @@ public class EventAddActivity extends AppCompatActivity {
         dateView = findViewById(R.id.et_date);
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
-
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month+1, day);
@@ -68,7 +70,11 @@ public class EventAddActivity extends AppCompatActivity {
                     return;
                 }
 
+                @SuppressLint("DefaultLocale") String timestamp = Timestamp.valueOf(String.format("%04d-%02d-%02d 00:00:00",
+                        year, month+1, day)).toString();
+
                 databaseHelper.insertEvent(new Event(title.getText().toString(),
+                        timestamp,
                         from.getText().toString(),
                         to.getText().toString()));
 
@@ -86,11 +92,9 @@ public class EventAddActivity extends AppCompatActivity {
 
 
     private void showDate(int year, int month, int day) {
-        dateView.setText(new StringBuilder().append(day).append("/")
-                .append(month).append("/").append(year));
+        dateView.setText(new StringBuilder().append(year).append("-")
+                .append(month).append("-").append(day));
     }
-
-    //
 
     public void showDatePicker(View v) {
 
@@ -114,13 +118,14 @@ public class EventAddActivity extends AppCompatActivity {
         // when dialog box is closed, below method will be called.
         public void onDateSet(DatePicker view, int selectedYear,
                               int selectedMonth, int selectedDay) {
+
             year = selectedYear;
             month = selectedMonth;
             day = selectedDay;
 
             // set selected date into textview
-            dateView.setText(new StringBuilder().append(month + 1)
-                    .append("-").append(day).append("-").append(year)
+            dateView.setText(new StringBuilder().append(year)
+                    .append("-").append(month + 1).append("-").append(day)
                     .append(" "));
 
         }
@@ -149,7 +154,7 @@ public class EventAddActivity extends AppCompatActivity {
 
     public void showToTimePicker(View v) {
 
-    // Get Current Time
+        // Get Current Time
         final Calendar c = Calendar.getInstance();
         tHour = c.get(Calendar.HOUR_OF_DAY);
         tMin = c.get(Calendar.MINUTE);

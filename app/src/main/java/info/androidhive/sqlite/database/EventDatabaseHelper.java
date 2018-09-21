@@ -50,6 +50,7 @@ public class EventDatabaseHelper extends SQLiteOpenHelper {
         // `id` and `timestamp` will be inserted automatically.
         // no need to add them
         values.put(Event.COLUMN_TITLE, event.getTitle());
+        values.put(Event.COLUMN_TIMESTAMP, event.getTimestamp());
         values.put(Event.COLUMN_FROM, event.getFrom());
         values.put(Event.COLUMN_TO, event.getTo());
 
